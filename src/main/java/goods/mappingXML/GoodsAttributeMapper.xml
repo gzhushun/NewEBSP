@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hs.goods.dao.GoodsAttributeMapper">
+  <resultMap id="BaseResultMap" type="org.hs.goods.model.GoodsAttribute">
+    <id column="attributeid" jdbcType="INTEGER" property="attributeid" />
+    <result column="attributetypeid" jdbcType="INTEGER" property="attributetypeid" />
+    <result column="attributename" jdbcType="VARCHAR" property="attributename" />
+    <result column="inputtype" jdbcType="CHAR" property="inputtype" />
+    <result column="attributegroup" jdbcType="VARCHAR" property="attributegroup" />
+    <result column="indexstatus" jdbcType="CHAR" property="indexstatus" />
+    <result column="linked" jdbcType="CHAR" property="linked" />
+    <result column="choosable" jdbcType="CHAR" property="choosable" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.hs.goods.model.GoodsAttribute">
+    <result column="attributevalues" jdbcType="LONGVARCHAR" property="attributevalues" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    attributeid, attributetypeid, attributename, inputtype, attributegroup, indexstatus, 
+    linked, choosable
+  </sql>
+  <sql id="Blob_Column_List">
+    attributevalues
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_goods_attribute
+    where attributeid = #{attributeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_goods_attribute
+    where attributeid = #{attributeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.hs.goods.model.GoodsAttribute">
+    insert into t_goods_attribute (attributeid, attributetypeid, attributename, 
+      inputtype, attributegroup, indexstatus, 
+      linked, choosable, attributevalues
+      )
+    values (#{attributeid,jdbcType=INTEGER}, #{attributetypeid,jdbcType=INTEGER}, #{attributename,jdbcType=VARCHAR}, 
+      #{inputtype,jdbcType=CHAR}, #{attributegroup,jdbcType=VARCHAR}, #{indexstatus,jdbcType=CHAR}, 
+      #{linked,jdbcType=CHAR}, #{choosable,jdbcType=CHAR}, #{attributevalues,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.hs.goods.model.GoodsAttribute">
+    insert into t_goods_attribute
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attributeid != null">
+        attributeid,
+      </if>
+      <if test="attributetypeid != null">
+        attributetypeid,
+      </if>
+      <if test="attributename != null">
+        attributename,
+      </if>
+      <if test="inputtype != null">
+        inputtype,
+      </if>
+      <if test="attributegroup != null">
+        attributegroup,
+      </if>
+      <if test="indexstatus != null">
+        indexstatus,
+      </if>
+      <if test="linked != null">
+        linked,
+      </if>
+      <if test="choosable != null">
+        choosable,
+      </if>
+      <if test="attributevalues != null">
+        attributevalues,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attributeid != null">
+        #{attributeid,jdbcType=INTEGER},
+      </if>
+      <if test="attributetypeid != null">
+        #{attributetypeid,jdbcType=INTEGER},
+      </if>
+      <if test="attributename != null">
+        #{attributename,jdbcType=VARCHAR},
+      </if>
+      <if test="inputtype != null">
+        #{inputtype,jdbcType=CHAR},
+      </if>
+      <if test="attributegroup != null">
+        #{attributegroup,jdbcType=VARCHAR},
+      </if>
+      <if test="indexstatus != null">
+        #{indexstatus,jdbcType=CHAR},
+      </if>
+      <if test="linked != null">
+        #{linked,jdbcType=CHAR},
+      </if>
+      <if test="choosable != null">
+        #{choosable,jdbcType=CHAR},
+      </if>
+      <if test="attributevalues != null">
+        #{attributevalues,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.hs.goods.model.GoodsAttribute">
+    update t_goods_attribute
+    <set>
+      <if test="attributetypeid != null">
+        attributetypeid = #{attributetypeid,jdbcType=INTEGER},
+      </if>
+      <if test="attributename != null">
+        attributename = #{attributename,jdbcType=VARCHAR},
+      </if>
+      <if test="inputtype != null">
+        inputtype = #{inputtype,jdbcType=CHAR},
+      </if>
+      <if test="attributegroup != null">
+        attributegroup = #{attributegroup,jdbcType=VARCHAR},
+      </if>
+      <if test="indexstatus != null">
+        indexstatus = #{indexstatus,jdbcType=CHAR},
+      </if>
+      <if test="linked != null">
+        linked = #{linked,jdbcType=CHAR},
+      </if>
+      <if test="choosable != null">
+        choosable = #{choosable,jdbcType=CHAR},
+      </if>
+      <if test="attributevalues != null">
+        attributevalues = #{attributevalues,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where attributeid = #{attributeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.hs.goods.model.GoodsAttribute">
+    update t_goods_attribute
+    set attributetypeid = #{attributetypeid,jdbcType=INTEGER},
+      attributename = #{attributename,jdbcType=VARCHAR},
+      inputtype = #{inputtype,jdbcType=CHAR},
+      attributegroup = #{attributegroup,jdbcType=VARCHAR},
+      indexstatus = #{indexstatus,jdbcType=CHAR},
+      linked = #{linked,jdbcType=CHAR},
+      choosable = #{choosable,jdbcType=CHAR},
+      attributevalues = #{attributevalues,jdbcType=LONGVARCHAR}
+    where attributeid = #{attributeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.hs.goods.model.GoodsAttribute">
+    update t_goods_attribute
+    set attributetypeid = #{attributetypeid,jdbcType=INTEGER},
+      attributename = #{attributename,jdbcType=VARCHAR},
+      inputtype = #{inputtype,jdbcType=CHAR},
+      attributegroup = #{attributegroup,jdbcType=VARCHAR},
+      indexstatus = #{indexstatus,jdbcType=CHAR},
+      linked = #{linked,jdbcType=CHAR},
+      choosable = #{choosable,jdbcType=CHAR}
+    where attributeid = #{attributeid,jdbcType=INTEGER}
+  </update>
+</mapper>

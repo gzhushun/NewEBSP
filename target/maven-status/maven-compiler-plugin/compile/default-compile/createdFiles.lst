@@ -1,0 +1,10 @@
+goods\dao\impl\GoodsAttributeDAOImpl.class
+goods\model\GoodsInformation.class
+goods\model\GoodsPicture.class
+goods\dao\impl\GoodsPictureDAOImpl.class
+goods\dao\GoodsPictureDAO.class
+goods\dao\GoodsInformationDAO.class
+goods\model\GoodsAttribute.class
+goods\dao\GoodsAttributeDAO.class
+goods\model\GoodsInformationWithBLOBs.class
+goods\dao\impl\GoodsInformationDAOImpl.class

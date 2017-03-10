@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hs.goods.dao.GoodsPictureMapper">
+  <resultMap id="BaseResultMap" type="org.hs.goods.model.GoodsPicture">
+    <id column="pictureid" jdbcType="INTEGER" property="pictureid" />
+    <result column="picturename" jdbcType="VARCHAR" property="picturename" />
+    <result column="localurl" jdbcType="VARCHAR" property="localurl" />
+    <result column="serverurl" jdbcType="VARCHAR" property="serverurl" />
+    <result column="catagoryid" jdbcType="INTEGER" property="catagoryid" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createtime" jdbcType="CHAR" property="createtime" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="modifytime" jdbcType="CHAR" property="modifytime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.hs.goods.model.GoodsPicture">
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pictureid, picturename, localurl, serverurl, catagoryid, creator, createtime, modifier, 
+    modifytime
+  </sql>
+  <sql id="Blob_Column_List">
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_goods_picture
+    where pictureid = #{pictureid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_goods_picture
+    where pictureid = #{pictureid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.hs.goods.model.GoodsPicture">
+    insert into t_goods_picture (pictureid, picturename, localurl, 
+      serverurl, catagoryid, creator, 
+      createtime, modifier, modifytime, 
+      remark)
+    values (#{pictureid,jdbcType=INTEGER}, #{picturename,jdbcType=VARCHAR}, #{localurl,jdbcType=VARCHAR}, 
+      #{serverurl,jdbcType=VARCHAR}, #{catagoryid,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=CHAR}, #{modifier,jdbcType=VARCHAR}, #{modifytime,jdbcType=CHAR}, 
+      #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.hs.goods.model.GoodsPicture">
+    insert into t_goods_picture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pictureid != null">
+        pictureid,
+      </if>
+      <if test="picturename != null">
+        picturename,
+      </if>
+      <if test="localurl != null">
+        localurl,
+      </if>
+      <if test="serverurl != null">
+        serverurl,
+      </if>
+      <if test="catagoryid != null">
+        catagoryid,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="modifytime != null">
+        modifytime,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pictureid != null">
+        #{pictureid,jdbcType=INTEGER},
+      </if>
+      <if test="picturename != null">
+        #{picturename,jdbcType=VARCHAR},
+      </if>
+      <if test="localurl != null">
+        #{localurl,jdbcType=VARCHAR},
+      </if>
+      <if test="serverurl != null">
+        #{serverurl,jdbcType=VARCHAR},
+      </if>
+      <if test="catagoryid != null">
+        #{catagoryid,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=CHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.hs.goods.model.GoodsPicture">
+    update t_goods_picture
+    <set>
+      <if test="picturename != null">
+        picturename = #{picturename,jdbcType=VARCHAR},
+      </if>
+      <if test="localurl != null">
+        localurl = #{localurl,jdbcType=VARCHAR},
+      </if>
+      <if test="serverurl != null">
+        serverurl = #{serverurl,jdbcType=VARCHAR},
+      </if>
+      <if test="catagoryid != null">
+        catagoryid = #{catagoryid,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=CHAR},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        modifytime = #{modifytime,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where pictureid = #{pictureid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.hs.goods.model.GoodsPicture">
+    update t_goods_picture
+    set picturename = #{picturename,jdbcType=VARCHAR},
+      localurl = #{localurl,jdbcType=VARCHAR},
+      serverurl = #{serverurl,jdbcType=VARCHAR},
+      catagoryid = #{catagoryid,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=CHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modifytime = #{modifytime,jdbcType=CHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where pictureid = #{pictureid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.hs.goods.model.GoodsPicture">
+    update t_goods_picture
+    set picturename = #{picturename,jdbcType=VARCHAR},
+      localurl = #{localurl,jdbcType=VARCHAR},
+      serverurl = #{serverurl,jdbcType=VARCHAR},
+      catagoryid = #{catagoryid,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=CHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modifytime = #{modifytime,jdbcType=CHAR}
+    where pictureid = #{pictureid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hs.goods.dao.GoodsInformationMapper">
+  <resultMap id="BaseResultMap" type="org.hs.goods.model.GoodsInformation">
+    <id column="goodsid" jdbcType="INTEGER" property="goodsid" />
+    <result column="goodsname" jdbcType="VARCHAR" property="goodsname" />
+    <result column="goodssku" jdbcType="VARCHAR" property="goodssku" />
+    <result column="goodsattributesku" jdbcType="VARCHAR" property="goodsattributesku" />
+    <result column="categoryid" jdbcType="INTEGER" property="categoryid" />
+    <result column="pictureid" jdbcType="INTEGER" property="pictureid" />
+    <result column="purchaser" jdbcType="VARCHAR" property="purchaser" />
+    <result column="supplierid" jdbcType="INTEGER" property="supplierid" />
+    <result column="stocking" jdbcType="INTEGER" property="stocking" />
+    <result column="stocktotal" jdbcType="INTEGER" property="stocktotal" />
+    <result column="soldquantity" jdbcType="INTEGER" property="soldquantity" />
+    <result column="stockup" jdbcType="INTEGER" property="stockup" />
+    <result column="isspot" jdbcType="CHAR" property="isspot" />
+    <result column="isorder" jdbcType="CHAR" property="isorder" />
+    <result column="ordertime" jdbcType="CHAR" property="ordertime" />
+    <result column="miniorderquantity" jdbcType="INTEGER" property="miniorderquantity" />
+    <result column="listingdate" jdbcType="CHAR" property="listingdate" />
+    <result column="saleplatform" jdbcType="CHAR" property="saleplatform" />
+    <result column="barcode" jdbcType="VARCHAR" property="barcode" />
+    <result column="proweightclear" jdbcType="INTEGER" property="proweightclear" />
+    <result column="goodsweight" jdbcType="INTEGER" property="goodsweight" />
+    <result column="goodslength" jdbcType="INTEGER" property="goodslength" />
+    <result column="goodswidth" jdbcType="INTEGER" property="goodswidth" />
+    <result column="goodsheight" jdbcType="INTEGER" property="goodsheight" />
+    <result column="purchasegoodsprice" jdbcType="DOUBLE" property="purchasegoodsprice" />
+    <result column="goodscost" jdbcType="DOUBLE" property="goodscost" />
+    <result column="goodsmarketprice" jdbcType="DOUBLE" property="goodsmarketprice" />
+    <result column="goodssaleprice" jdbcType="DOUBLE" property="goodssaleprice" />
+    <result column="vipprice" jdbcType="DOUBLE" property="vipprice" />
+    <result column="activityprice" jdbcType="DOUBLE" property="activityprice" />
+    <result column="limitbuy" jdbcType="CHAR" property="limitbuy" />
+    <result column="limitamount" jdbcType="INTEGER" property="limitamount" />
+    <result column="roadday" jdbcType="INTEGER" property="roadday" />
+    <result column="popular" jdbcType="CHAR" property="popular" />
+    <result column="goodsstatus" jdbcType="CHAR" property="goodsstatus" />
+    <result column="isfragile" jdbcType="CHAR" property="isfragile" />
+    <result column="recover" jdbcType="CHAR" property="recover" />
+    <result column="isdown" jdbcType="CHAR" property="isdown" />
+    <result column="overseaposition" jdbcType="CHAR" property="overseaposition" />
+    <result column="qualitycheck" jdbcType="CHAR" property="qualitycheck" />
+    <result column="instock1name" jdbcType="VARCHAR" property="instock1name" />
+    <result column="instock2name" jdbcType="VARCHAR" property="instock2name" />
+    <result column="instock3name" jdbcType="VARCHAR" property="instock3name" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createtime" jdbcType="CHAR" property="createtime" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="modifytime" jdbcType="CHAR" property="modifytime" />
+    <result column="lifestyle" jdbcType="VARCHAR" property="lifestyle" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.hs.goods.model.GoodsInformationWithBLOBs">
+    <result column="goodsdescription" jdbcType="LONGVARCHAR" property="goodsdescription" />
+    <result column="marketcondition" jdbcType="LONGVARCHAR" property="marketcondition" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+    <result column="attachment" jdbcType="LONGVARCHAR" property="attachment" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goodsid, goodsname, goodssku, goodsattributesku, categoryid, pictureid, purchaser, 
+    supplierid, stocking, stocktotal, soldquantity, stockup, isspot, isorder, ordertime, 
+    miniorderquantity, listingdate, saleplatform, barcode, proweightclear, goodsweight, 
+    goodslength, goodswidth, goodsheight, purchasegoodsprice, goodscost, goodsmarketprice, 
+    goodssaleprice, vipprice, activityprice, limitbuy, limitamount, roadday, popular, 
+    goodsstatus, isfragile, recover, isdown, overseaposition, qualitycheck, instock1name, 
+    instock2name, instock3name, creator, createtime, modifier, modifytime, lifestyle
+  </sql>
+  <sql id="Blob_Column_List">
+    goodsdescription, marketcondition, remark, attachment
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_goods_information
+    where goodsid = #{goodsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_goods_information
+    where goodsid = #{goodsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.hs.goods.model.GoodsInformationWithBLOBs">
+    insert into t_goods_information (goodsid, goodsname, goodssku, 
+      goodsattributesku, categoryid, pictureid, 
+      purchaser, supplierid, stocking, 
+      stocktotal, soldquantity, stockup, 
+      isspot, isorder, ordertime, 
+      miniorderquantity, listingdate, saleplatform, 
+      barcode, proweightclear, goodsweight, 
+      goodslength, goodswidth, goodsheight, 
+      purchasegoodsprice, goodscost, goodsmarketprice, 
+      goodssaleprice, vipprice, activityprice, 
+      limitbuy, limitamount, roadday, 
+      popular, goodsstatus, isfragile, 
+      recover, isdown, overseaposition, 
+      qualitycheck, instock1name, instock2name, 
+      instock3name, creator, createtime, 
+      modifier, modifytime, lifestyle, 
+      goodsdescription, marketcondition, 
+      remark, attachment)
+    values (#{goodsid,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, #{goodssku,jdbcType=VARCHAR}, 
+      #{goodsattributesku,jdbcType=VARCHAR}, #{categoryid,jdbcType=INTEGER}, #{pictureid,jdbcType=INTEGER}, 
+      #{purchaser,jdbcType=VARCHAR}, #{supplierid,jdbcType=INTEGER}, #{stocking,jdbcType=INTEGER}, 
+      #{stocktotal,jdbcType=INTEGER}, #{soldquantity,jdbcType=INTEGER}, #{stockup,jdbcType=INTEGER}, 
+      #{isspot,jdbcType=CHAR}, #{isorder,jdbcType=CHAR}, #{ordertime,jdbcType=CHAR}, 
+      #{miniorderquantity,jdbcType=INTEGER}, #{listingdate,jdbcType=CHAR}, #{saleplatform,jdbcType=CHAR}, 
+      #{barcode,jdbcType=VARCHAR}, #{proweightclear,jdbcType=INTEGER}, #{goodsweight,jdbcType=INTEGER}, 
+      #{goodslength,jdbcType=INTEGER}, #{goodswidth,jdbcType=INTEGER}, #{goodsheight,jdbcType=INTEGER}, 
+      #{purchasegoodsprice,jdbcType=DOUBLE}, #{goodscost,jdbcType=DOUBLE}, #{goodsmarketprice,jdbcType=DOUBLE}, 
+      #{goodssaleprice,jdbcType=DOUBLE}, #{vipprice,jdbcType=DOUBLE}, #{activityprice,jdbcType=DOUBLE}, 
+      #{limitbuy,jdbcType=CHAR}, #{limitamount,jdbcType=INTEGER}, #{roadday,jdbcType=INTEGER}, 
+      #{popular,jdbcType=CHAR}, #{goodsstatus,jdbcType=CHAR}, #{isfragile,jdbcType=CHAR}, 
+      #{recover,jdbcType=CHAR}, #{isdown,jdbcType=CHAR}, #{overseaposition,jdbcType=CHAR}, 
+      #{qualitycheck,jdbcType=CHAR}, #{instock1name,jdbcType=VARCHAR}, #{instock2name,jdbcType=VARCHAR}, 
+      #{instock3name,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=CHAR}, 
+      #{modifier,jdbcType=VARCHAR}, #{modifytime,jdbcType=CHAR}, #{lifestyle,jdbcType=VARCHAR}, 
+      #{goodsdescription,jdbcType=LONGVARCHAR}, #{marketcondition,jdbcType=LONGVARCHAR}, 
+      #{remark,jdbcType=LONGVARCHAR}, #{attachment,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.hs.goods.model.GoodsInformationWithBLOBs">
+    insert into t_goods_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsid != null">
+        goodsid,
+      </if>
+      <if test="goodsname != null">
+        goodsname,
+      </if>
+      <if test="goodssku != null">
+        goodssku,
+      </if>
+      <if test="goodsattributesku != null">
+        goodsattributesku,
+      </if>
+      <if test="categoryid != null">
+        categoryid,
+      </if>
+      <if test="pictureid != null">
+        pictureid,
+      </if>
+      <if test="purchaser != null">
+        purchaser,
+      </if>
+      <if test="supplierid != null">
+        supplierid,
+      </if>
+      <if test="stocking != null">
+        stocking,
+      </if>
+      <if test="stocktotal != null">
+        stocktotal,
+      </if>
+      <if test="soldquantity != null">
+        soldquantity,
+      </if>
+      <if test="stockup != null">
+        stockup,
+      </if>
+      <if test="isspot != null">
+        isspot,
+      </if>
+      <if test="isorder != null">
+        isorder,
+      </if>
+      <if test="ordertime != null">
+        ordertime,
+      </if>
+      <if test="miniorderquantity != null">
+        miniorderquantity,
+      </if>
+      <if test="listingdate != null">
+        listingdate,
+      </if>
+      <if test="saleplatform != null">
+        saleplatform,
+      </if>
+      <if test="barcode != null">
+        barcode,
+      </if>
+      <if test="proweightclear != null">
+        proweightclear,
+      </if>
+      <if test="goodsweight != null">
+        goodsweight,
+      </if>
+      <if test="goodslength != null">
+        goodslength,
+      </if>
+      <if test="goodswidth != null">
+        goodswidth,
+      </if>
+      <if test="goodsheight != null">
+        goodsheight,
+      </if>
+      <if test="purchasegoodsprice != null">
+        purchasegoodsprice,
+      </if>
+      <if test="goodscost != null">
+        goodscost,
+      </if>
+      <if test="goodsmarketprice != null">
+        goodsmarketprice,
+      </if>
+      <if test="goodssaleprice != null">
+        goodssaleprice,
+      </if>
+      <if test="vipprice != null">
+        vipprice,
+      </if>
+      <if test="activityprice != null">
+        activityprice,
+      </if>
+      <if test="limitbuy != null">
+        limitbuy,
+      </if>
+      <if test="limitamount != null">
+        limitamount,
+      </if>
+      <if test="roadday != null">
+        roadday,
+      </if>
+      <if test="popular != null">
+        popular,
+      </if>
+      <if test="goodsstatus != null">
+        goodsstatus,
+      </if>
+      <if test="isfragile != null">
+        isfragile,
+      </if>
+      <if test="recover != null">
+        recover,
+      </if>
+      <if test="isdown != null">
+        isdown,
+      </if>
+      <if test="overseaposition != null">
+        overseaposition,
+      </if>
+      <if test="qualitycheck != null">
+        qualitycheck,
+      </if>
+      <if test="instock1name != null">
+        instock1name,
+      </if>
+      <if test="instock2name != null">
+        instock2name,
+      </if>
+      <if test="instock3name != null">
+        instock3name,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="modifytime != null">
+        modifytime,
+      </if>
+      <if test="lifestyle != null">
+        lifestyle,
+      </if>
+      <if test="goodsdescription != null">
+        goodsdescription,
+      </if>
+      <if test="marketcondition != null">
+        marketcondition,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="attachment != null">
+        attachment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsid != null">
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsname != null">
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodssku != null">
+        #{goodssku,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsattributesku != null">
+        #{goodsattributesku,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryid != null">
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="pictureid != null">
+        #{pictureid,jdbcType=INTEGER},
+      </if>
+      <if test="purchaser != null">
+        #{purchaser,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierid != null">
+        #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="stocking != null">
+        #{stocking,jdbcType=INTEGER},
+      </if>
+      <if test="stocktotal != null">
+        #{stocktotal,jdbcType=INTEGER},
+      </if>
+      <if test="soldquantity != null">
+        #{soldquantity,jdbcType=INTEGER},
+      </if>
+      <if test="stockup != null">
+        #{stockup,jdbcType=INTEGER},
+      </if>
+      <if test="isspot != null">
+        #{isspot,jdbcType=CHAR},
+      </if>
+      <if test="isorder != null">
+        #{isorder,jdbcType=CHAR},
+      </if>
+      <if test="ordertime != null">
+        #{ordertime,jdbcType=CHAR},
+      </if>
+      <if test="miniorderquantity != null">
+        #{miniorderquantity,jdbcType=INTEGER},
+      </if>
+      <if test="listingdate != null">
+        #{listingdate,jdbcType=CHAR},
+      </if>
+      <if test="saleplatform != null">
+        #{saleplatform,jdbcType=CHAR},
+      </if>
+      <if test="barcode != null">
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="proweightclear != null">
+        #{proweightclear,jdbcType=INTEGER},
+      </if>
+      <if test="goodsweight != null">
+        #{goodsweight,jdbcType=INTEGER},
+      </if>
+      <if test="goodslength != null">
+        #{goodslength,jdbcType=INTEGER},
+      </if>
+      <if test="goodswidth != null">
+        #{goodswidth,jdbcType=INTEGER},
+      </if>
+      <if test="goodsheight != null">
+        #{goodsheight,jdbcType=INTEGER},
+      </if>
+      <if test="purchasegoodsprice != null">
+        #{purchasegoodsprice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodscost != null">
+        #{goodscost,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsmarketprice != null">
+        #{goodsmarketprice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodssaleprice != null">
+        #{goodssaleprice,jdbcType=DOUBLE},
+      </if>
+      <if test="vipprice != null">
+        #{vipprice,jdbcType=DOUBLE},
+      </if>
+      <if test="activityprice != null">
+        #{activityprice,jdbcType=DOUBLE},
+      </if>
+      <if test="limitbuy != null">
+        #{limitbuy,jdbcType=CHAR},
+      </if>
+      <if test="limitamount != null">
+        #{limitamount,jdbcType=INTEGER},
+      </if>
+      <if test="roadday != null">
+        #{roadday,jdbcType=INTEGER},
+      </if>
+      <if test="popular != null">
+        #{popular,jdbcType=CHAR},
+      </if>
+      <if test="goodsstatus != null">
+        #{goodsstatus,jdbcType=CHAR},
+      </if>
+      <if test="isfragile != null">
+        #{isfragile,jdbcType=CHAR},
+      </if>
+      <if test="recover != null">
+        #{recover,jdbcType=CHAR},
+      </if>
+      <if test="isdown != null">
+        #{isdown,jdbcType=CHAR},
+      </if>
+      <if test="overseaposition != null">
+        #{overseaposition,jdbcType=CHAR},
+      </if>
+      <if test="qualitycheck != null">
+        #{qualitycheck,jdbcType=CHAR},
+      </if>
+      <if test="instock1name != null">
+        #{instock1name,jdbcType=VARCHAR},
+      </if>
+      <if test="instock2name != null">
+        #{instock2name,jdbcType=VARCHAR},
+      </if>
+      <if test="instock3name != null">
+        #{instock3name,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=CHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=CHAR},
+      </if>
+      <if test="lifestyle != null">
+        #{lifestyle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsdescription != null">
+        #{goodsdescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="marketcondition != null">
+        #{marketcondition,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachment != null">
+        #{attachment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.hs.goods.model.GoodsInformationWithBLOBs">
+    update t_goods_information
+    <set>
+      <if test="goodsname != null">
+        goodsname = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodssku != null">
+        goodssku = #{goodssku,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsattributesku != null">
+        goodsattributesku = #{goodsattributesku,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryid != null">
+        categoryid = #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="pictureid != null">
+        pictureid = #{pictureid,jdbcType=INTEGER},
+      </if>
+      <if test="purchaser != null">
+        purchaser = #{purchaser,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierid != null">
+        supplierid = #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="stocking != null">
+        stocking = #{stocking,jdbcType=INTEGER},
+      </if>
+      <if test="stocktotal != null">
+        stocktotal = #{stocktotal,jdbcType=INTEGER},
+      </if>
+      <if test="soldquantity != null">
+        soldquantity = #{soldquantity,jdbcType=INTEGER},
+      </if>
+      <if test="stockup != null">
+        stockup = #{stockup,jdbcType=INTEGER},
+      </if>
+      <if test="isspot != null">
+        isspot = #{isspot,jdbcType=CHAR},
+      </if>
+      <if test="isorder != null">
+        isorder = #{isorder,jdbcType=CHAR},
+      </if>
+      <if test="ordertime != null">
+        ordertime = #{ordertime,jdbcType=CHAR},
+      </if>
+      <if test="miniorderquantity != null">
+        miniorderquantity = #{miniorderquantity,jdbcType=INTEGER},
+      </if>
+      <if test="listingdate != null">
+        listingdate = #{listingdate,jdbcType=CHAR},
+      </if>
+      <if test="saleplatform != null">
+        saleplatform = #{saleplatform,jdbcType=CHAR},
+      </if>
+      <if test="barcode != null">
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="proweightclear != null">
+        proweightclear = #{proweightclear,jdbcType=INTEGER},
+      </if>
+      <if test="goodsweight != null">
+        goodsweight = #{goodsweight,jdbcType=INTEGER},
+      </if>
+      <if test="goodslength != null">
+        goodslength = #{goodslength,jdbcType=INTEGER},
+      </if>
+      <if test="goodswidth != null">
+        goodswidth = #{goodswidth,jdbcType=INTEGER},
+      </if>
+      <if test="goodsheight != null">
+        goodsheight = #{goodsheight,jdbcType=INTEGER},
+      </if>
+      <if test="purchasegoodsprice != null">
+        purchasegoodsprice = #{purchasegoodsprice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodscost != null">
+        goodscost = #{goodscost,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsmarketprice != null">
+        goodsmarketprice = #{goodsmarketprice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodssaleprice != null">
+        goodssaleprice = #{goodssaleprice,jdbcType=DOUBLE},
+      </if>
+      <if test="vipprice != null">
+        vipprice = #{vipprice,jdbcType=DOUBLE},
+      </if>
+      <if test="activityprice != null">
+        activityprice = #{activityprice,jdbcType=DOUBLE},
+      </if>
+      <if test="limitbuy != null">
+        limitbuy = #{limitbuy,jdbcType=CHAR},
+      </if>
+      <if test="limitamount != null">
+        limitamount = #{limitamount,jdbcType=INTEGER},
+      </if>
+      <if test="roadday != null">
+        roadday = #{roadday,jdbcType=INTEGER},
+      </if>
+      <if test="popular != null">
+        popular = #{popular,jdbcType=CHAR},
+      </if>
+      <if test="goodsstatus != null">
+        goodsstatus = #{goodsstatus,jdbcType=CHAR},
+      </if>
+      <if test="isfragile != null">
+        isfragile = #{isfragile,jdbcType=CHAR},
+      </if>
+      <if test="recover != null">
+        recover = #{recover,jdbcType=CHAR},
+      </if>
+      <if test="isdown != null">
+        isdown = #{isdown,jdbcType=CHAR},
+      </if>
+      <if test="overseaposition != null">
+        overseaposition = #{overseaposition,jdbcType=CHAR},
+      </if>
+      <if test="qualitycheck != null">
+        qualitycheck = #{qualitycheck,jdbcType=CHAR},
+      </if>
+      <if test="instock1name != null">
+        instock1name = #{instock1name,jdbcType=VARCHAR},
+      </if>
+      <if test="instock2name != null">
+        instock2name = #{instock2name,jdbcType=VARCHAR},
+      </if>
+      <if test="instock3name != null">
+        instock3name = #{instock3name,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=CHAR},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        modifytime = #{modifytime,jdbcType=CHAR},
+      </if>
+      <if test="lifestyle != null">
+        lifestyle = #{lifestyle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsdescription != null">
+        goodsdescription = #{goodsdescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="marketcondition != null">
+        marketcondition = #{marketcondition,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachment != null">
+        attachment = #{attachment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where goodsid = #{goodsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.hs.goods.model.GoodsInformationWithBLOBs">
+    update t_goods_information
+    set goodsname = #{goodsname,jdbcType=VARCHAR},
+      goodssku = #{goodssku,jdbcType=VARCHAR},
+      goodsattributesku = #{goodsattributesku,jdbcType=VARCHAR},
+      categoryid = #{categoryid,jdbcType=INTEGER},
+      pictureid = #{pictureid,jdbcType=INTEGER},
+      purchaser = #{purchaser,jdbcType=VARCHAR},
+      supplierid = #{supplierid,jdbcType=INTEGER},
+      stocking = #{stocking,jdbcType=INTEGER},
+      stocktotal = #{stocktotal,jdbcType=INTEGER},
+      soldquantity = #{soldquantity,jdbcType=INTEGER},
+      stockup = #{stockup,jdbcType=INTEGER},
+      isspot = #{isspot,jdbcType=CHAR},
+      isorder = #{isorder,jdbcType=CHAR},
+      ordertime = #{ordertime,jdbcType=CHAR},
+      miniorderquantity = #{miniorderquantity,jdbcType=INTEGER},
+      listingdate = #{listingdate,jdbcType=CHAR},
+      saleplatform = #{saleplatform,jdbcType=CHAR},
+      barcode = #{barcode,jdbcType=VARCHAR},
+      proweightclear = #{proweightclear,jdbcType=INTEGER},
+      goodsweight = #{goodsweight,jdbcType=INTEGER},
+      goodslength = #{goodslength,jdbcType=INTEGER},
+      goodswidth = #{goodswidth,jdbcType=INTEGER},
+      goodsheight = #{goodsheight,jdbcType=INTEGER},
+      purchasegoodsprice = #{purchasegoodsprice,jdbcType=DOUBLE},
+      goodscost = #{goodscost,jdbcType=DOUBLE},
+      goodsmarketprice = #{goodsmarketprice,jdbcType=DOUBLE},
+      goodssaleprice = #{goodssaleprice,jdbcType=DOUBLE},
+      vipprice = #{vipprice,jdbcType=DOUBLE},
+      activityprice = #{activityprice,jdbcType=DOUBLE},
+      limitbuy = #{limitbuy,jdbcType=CHAR},
+      limitamount = #{limitamount,jdbcType=INTEGER},
+      roadday = #{roadday,jdbcType=INTEGER},
+      popular = #{popular,jdbcType=CHAR},
+      goodsstatus = #{goodsstatus,jdbcType=CHAR},
+      isfragile = #{isfragile,jdbcType=CHAR},
+      recover = #{recover,jdbcType=CHAR},
+      isdown = #{isdown,jdbcType=CHAR},
+      overseaposition = #{overseaposition,jdbcType=CHAR},
+      qualitycheck = #{qualitycheck,jdbcType=CHAR},
+      instock1name = #{instock1name,jdbcType=VARCHAR},
+      instock2name = #{instock2name,jdbcType=VARCHAR},
+      instock3name = #{instock3name,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=CHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modifytime = #{modifytime,jdbcType=CHAR},
+      lifestyle = #{lifestyle,jdbcType=VARCHAR},
+      goodsdescription = #{goodsdescription,jdbcType=LONGVARCHAR},
+      marketcondition = #{marketcondition,jdbcType=LONGVARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR},
+      attachment = #{attachment,jdbcType=LONGVARCHAR}
+    where goodsid = #{goodsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.hs.goods.model.GoodsInformation">
+    update t_goods_information
+    set goodsname = #{goodsname,jdbcType=VARCHAR},
+      goodssku = #{goodssku,jdbcType=VARCHAR},
+      goodsattributesku = #{goodsattributesku,jdbcType=VARCHAR},
+      categoryid = #{categoryid,jdbcType=INTEGER},
+      pictureid = #{pictureid,jdbcType=INTEGER},
+      purchaser = #{purchaser,jdbcType=VARCHAR},
+      supplierid = #{supplierid,jdbcType=INTEGER},
+      stocking = #{stocking,jdbcType=INTEGER},
+      stocktotal = #{stocktotal,jdbcType=INTEGER},
+      soldquantity = #{soldquantity,jdbcType=INTEGER},
+      stockup = #{stockup,jdbcType=INTEGER},
+      isspot = #{isspot,jdbcType=CHAR},
+      isorder = #{isorder,jdbcType=CHAR},
+      ordertime = #{ordertime,jdbcType=CHAR},
+      miniorderquantity = #{miniorderquantity,jdbcType=INTEGER},
+      listingdate = #{listingdate,jdbcType=CHAR},
+      saleplatform = #{saleplatform,jdbcType=CHAR},
+      barcode = #{barcode,jdbcType=VARCHAR},
+      proweightclear = #{proweightclear,jdbcType=INTEGER},
+      goodsweight = #{goodsweight,jdbcType=INTEGER},
+      goodslength = #{goodslength,jdbcType=INTEGER},
+      goodswidth = #{goodswidth,jdbcType=INTEGER},
+      goodsheight = #{goodsheight,jdbcType=INTEGER},
+      purchasegoodsprice = #{purchasegoodsprice,jdbcType=DOUBLE},
+      goodscost = #{goodscost,jdbcType=DOUBLE},
+      goodsmarketprice = #{goodsmarketprice,jdbcType=DOUBLE},
+      goodssaleprice = #{goodssaleprice,jdbcType=DOUBLE},
+      vipprice = #{vipprice,jdbcType=DOUBLE},
+      activityprice = #{activityprice,jdbcType=DOUBLE},
+      limitbuy = #{limitbuy,jdbcType=CHAR},
+      limitamount = #{limitamount,jdbcType=INTEGER},
+      roadday = #{roadday,jdbcType=INTEGER},
+      popular = #{popular,jdbcType=CHAR},
+      goodsstatus = #{goodsstatus,jdbcType=CHAR},
+      isfragile = #{isfragile,jdbcType=CHAR},
+      recover = #{recover,jdbcType=CHAR},
+      isdown = #{isdown,jdbcType=CHAR},
+      overseaposition = #{overseaposition,jdbcType=CHAR},
+      qualitycheck = #{qualitycheck,jdbcType=CHAR},
+      instock1name = #{instock1name,jdbcType=VARCHAR},
+      instock2name = #{instock2name,jdbcType=VARCHAR},
+      instock3name = #{instock3name,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=CHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modifytime = #{modifytime,jdbcType=CHAR},
+      lifestyle = #{lifestyle,jdbcType=VARCHAR}
+    where goodsid = #{goodsid,jdbcType=INTEGER}
+  </update>
+</mapper>
