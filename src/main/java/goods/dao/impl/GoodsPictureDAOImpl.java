@@ -1,8 +1,10 @@
 package goods.dao.impl;
 
+import org.springframework.stereotype.Repository;
+
 import goods.dao.GoodsPictureDAO;
 import goods.model.GoodsPicture;
-
+@Repository(value="goodsPictureDAO")
 public class GoodsPictureDAOImpl implements GoodsPictureDAO{
 	@Override
     public int deleteByPrimaryKey(Integer pictureid){

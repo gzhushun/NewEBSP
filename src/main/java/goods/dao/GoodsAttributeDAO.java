@@ -1,5 +1,8 @@
 package goods.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import goods.model.GoodsAttribute;
 
 public interface GoodsAttributeDAO {
@@ -16,4 +19,6 @@ public interface GoodsAttributeDAO {
     public int updateByPrimaryKeyWithBLOBs(GoodsAttribute record);
 
     public int updateByPrimaryKey(GoodsAttribute record);
+    
+    public List<GoodsAttribute> getAllGoodsAttributes(Map<String, Object> params);
 }
